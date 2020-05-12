@@ -1,0 +1,2 @@
+# config file that allows access to the cluster
+testcluster-kubeconfig.yaml
