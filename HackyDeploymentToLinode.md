@@ -30,3 +30,9 @@ is what told me I could hit this port 80 via port NodePort on my public ip addre
 details came from: https://kubernetes.io/docs/concepts/configuration/overview/
 
 # IT WORKED
+
+## Roll one back just for fun:
+
+```
+kubectl rollout undo deployment sa-frontend
+```

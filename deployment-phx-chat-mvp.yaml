@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phx-chat
+  labels:
+    app: phx-chat
+spec:
+  selector:
+    matchLabels:
+      app:  phx-chat
+
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: phx-chat
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - image: eqmvii/pivate_phx_chat:1
+          imagePullPolicy: Always
+          name: phx-chat
+          ports:
+            - containerPort: 80
+

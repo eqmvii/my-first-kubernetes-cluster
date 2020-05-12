@@ -21,3 +21,5 @@ kubectl config get-contexts
 # TODO
 
 The rest of the tutorial pods, perhaps?
+
+https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
