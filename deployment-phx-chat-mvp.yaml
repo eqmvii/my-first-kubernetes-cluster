@@ -9,7 +9,8 @@ spec:
     matchLabels:
       app:  phx-chat
 
-  replicas: 2
+  # sometimes using one or three replica to troubleshoot redis
+  replicas: 3
   minReadySeconds: 15
   strategy:
     type: RollingUpdate
@@ -24,9 +25,19 @@ spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - image: eqmvii/pivate_phx_chat:1
+        # this one a random number... but is it called / pulled at runtime or at compile time? WE'LL FIND OUT!
+        - image: eqmvii/pivate_phx_chat:2
           imagePullPolicy: Always
           name: phx-chat
           ports:
-            - containerPort: 80
+            - containerPort: 4000
+
+# TODO ERIC: Consider exploring environment variable introspectoin:
+# env:
+#   - name: MY_POD_NAME
+#     valueFrom:
+#       fieldRef:
+#         fieldPath: metadata.name
+
+
 
