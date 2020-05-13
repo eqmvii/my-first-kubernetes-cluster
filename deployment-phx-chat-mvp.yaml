@@ -25,19 +25,24 @@ spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        # this one a random number... but is it called / pulled at runtime or at compile time? WE'LL FIND OUT!
-        - image: eqmvii/pivate_phx_chat:2
+        # lol yes, typo, pivate not privae. Sigh.
+        - image: eqmvii/pivate_phx_chat:4
           imagePullPolicy: Always
           name: phx-chat
           ports:
             - containerPort: 4000
+          env:
+            - name: KUBERNETES_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
 
-# TODO ERIC: Consider exploring environment variable introspectoin:
-# env:
-#   - name: MY_POD_NAME
-#     valueFrom:
-#       fieldRef:
-#         fieldPath: metadata.name
+###
+### Helpful Commands
+###
 
+# Deploy & watch
+
+# kubectl apply -f deployment-phx-chat-mvp.yaml && kubectl rollout status deployment phx-chat && kubectl get pods
 
 
